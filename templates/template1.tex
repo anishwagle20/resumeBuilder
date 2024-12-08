@@ -1,0 +1,76 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+
+\begin{document}
+
+% Header
+\begin{center}
+    {\Huge \textbf{{{ name }}}} \\[0.5em]
+    \small
+    \texttt{{{ email }}} \quad | \quad {{{ phone }}} \quad | \quad \texttt{{{ linkedin }}} \quad | \quad \texttt{{{ github }}}
+\end{center}
+
+\vspace{1em}
+
+% Objective
+\section*{Objective}
+{{{ objective }}}
+
+% Education
+\section*{Education}
+\begin{itemize}[leftmargin=*]
+    \foreach \degree/\institution/\year in {
+        {{{ education.0.degree }}}/{{{ education.0.institution }}}/{{{ education.0.year }}},
+        {{{ education.1.degree }}}/{{{ education.1.institution }}}/{{{ education.1.year }}}
+    } {
+        \item \textbf{\degree}, \institution \hfill \year
+    }
+\end{itemize}
+
+% Experience
+\section*{Experience}
+\begin{itemize}[leftmargin=*]
+    \foreach \role/\company/\year/\respone/\resptwo in {
+        {{{ experience.0.role }}}/{{{ experience.0.company }}}/{{{ experience.0.year }}}/{{{ experience.0.responsibilities.0 }}}/{{{ experience.0.responsibilities.1 }}}
+    } {
+        \item \textbf{\role} at \company \hfill \year
+        \begin{itemize}
+            \item \respone
+            \item \resptwo
+        \end{itemize}
+    }
+\end{itemize}
+
+% Skills
+\section*{Skills}
+\begin{itemize}[leftmargin=*]
+    \foreach \skill in {
+        {{{ skills.0 }}}, {{{ skills.1 }}}, {{{ skills.2 }}}, {{{ skills.3 }}}, {{{ skills.4 }}}, {{{ skills.5 }}}, {{{ skills.6 }}}
+    } {
+        \item \skill
+    }
+\end{itemize}
+
+% Projects
+\section*{Projects}
+\begin{itemize}[leftmargin=*]
+    \foreach \title/\desc in {
+        {{{ projects.0.title }}}/{{{ projects.0.description }}}
+    } {
+        \item \textbf{\title}: \desc
+    }
+\end{itemize}
+
+% Achievements
+\section*{Achievements}
+\begin{itemize}[leftmargin=*]
+    \foreach \achievement in {
+        {{{ achievements.0 }}}, {{{ achievements.1 }}}
+    } {
+        \item \achievement
+    }
+\end{itemize}
+
+\end{document}
