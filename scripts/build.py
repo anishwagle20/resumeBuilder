@@ -40,7 +40,7 @@ def build_resume(template_file, data, output_file):
 def main():
     data = load_data('data.json')
     templates_dir = 'templates'
-    build_dir = 'build'
+    build_dir = 'builds'
 
     os.makedirs(build_dir, exist_ok=True)
 
