@@ -23,16 +23,27 @@ def format_projects(values):
 
 
 def replace_placeholders(template, data):
-    """Replace placeholders with formatted data."""
+    def format_list(items):
+        """Format a list as LaTeX itemized list."""
+        formatted = "\n".join(
+            f"\\item {item}" if isinstance(item, str) else 
+            f"\\item {item['role']} at {item['company']} ({item['duration']}): {item['description']}"
+            for item in items
+        )
+        return f"\\begin{{itemize}}\n{formatted}\n\\end{{itemize}}"
+
+    def format_dict(dictionary):
+        """Format a dictionary as LaTeX key-value pairs."""
+        return "\n".join(f"\\textbf{{{key}}}: {value}" for key, value in dictionary.items())
+
     for key, value in data.items():
-        if key == "projects" and isinstance(value, list):
-            value = format_projects(value)
-        elif isinstance(value, list):
+        if isinstance(value, list):
             value = format_list(value)
         elif isinstance(value, dict):
-            value = "\n".join([f"{k}: {v}" for k, v in value.items()])
-        template = template.replace(f"{{{{ {key} }}}}", str(value))
+            value = format_dict(value)
+        template = template.replace(f"{{{{ {key} }}}}", value)
     return template
+
 
 
 def build_resume(template_file, data, output_file):
