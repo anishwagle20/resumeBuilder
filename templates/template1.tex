@@ -1,76 +1,75 @@
-\documentclass[a4paper,10pt]{article}
+\documentclass[11pt,a4paper]{article}
+
 \usepackage[utf8]{inputenc}
-\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage{fontawesome}
+
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.55}
 
 \begin{document}
 
-% Header
 \begin{center}
-    {\Huge \textbf{{{ name }}}} \\[0.5em]
-    \small
-    \texttt{{{ email }}} \quad | \quad {{{ phone }}} \quad | \quad \texttt{{{ linkedin }}} \quad | \quad \texttt{{{ github }}}
+    {\Huge\textbf{\textcolor{darkblue}{\VAR{name}}}} \\
+    \vspace{0.5em}
+    \textcolor{darkblue}{\large \faEnvelope\ \VAR{email} \hspace{1em} \faPhone\ \VAR{phone}}
 \end{center}
 
 \vspace{1em}
 
-% Objective
-\section*{Objective}
-{{{ objective }}}
+\section*{Professional Experience}
+\begin{itemize}[label=\textcolor{darkblue}{\faBriefcase}]
+    \BLOCK{for experience in experiences}
+    \item \textbf{\VAR{experience.role}} - \VAR{experience.company} \hfill \VAR{experience.duration} \\
+    \VAR{experience.description}
+    \BLOCK{endfor}
+\end{itemize}
 
-% Education
 \section*{Education}
-\begin{itemize}[leftmargin=*]
-    \foreach \degree/\institution/\year in {
-        {{{ education.0.degree }}}/{{{ education.0.institution }}}/{{{ education.0.year }}},
-        {{{ education.1.degree }}}/{{{ education.1.institution }}}/{{{ education.1.year }}}
-    } {
-        \item \textbf{\degree}, \institution \hfill \year
-    }
+\begin{itemize}[label=\textcolor{darkblue}{\faGraduationCap}]
+    \BLOCK{for education in education}
+    \item \textbf{\VAR{education.degree}} \hfill \VAR{education.duration} \\
+    \VAR{education.institution} \\
+    \VAR{education.details}
+    \BLOCK{endfor}
 \end{itemize}
 
-% Experience
-\section*{Experience}
-\begin{itemize}[leftmargin=*]
-    \foreach \role/\company/\year/\respone/\resptwo in {
-        {{{ experience.0.role }}}/{{{ experience.0.company }}}/{{{ experience.0.year }}}/{{{ experience.0.responsibilities.0 }}}/{{{ experience.0.responsibilities.1 }}}
-    } {
-        \item \textbf{\role} at \company \hfill \year
-        \begin{itemize}
-            \item \respone
-            \item \resptwo
-        \end{itemize}
-    }
-\end{itemize}
-
-% Skills
-\section*{Skills}
-\begin{itemize}[leftmargin=*]
-    \foreach \skill in {
-        {{{ skills.0 }}}, {{{ skills.1 }}}, {{{ skills.2 }}}, {{{ skills.3 }}}, {{{ skills.4 }}}, {{{ skills.5 }}}, {{{ skills.6 }}}
-    } {
-        \item \skill
-    }
-\end{itemize}
-
-% Projects
 \section*{Projects}
-\begin{itemize}[leftmargin=*]
-    \foreach \title/\desc in {
-        {{{ projects.0.title }}}/{{{ projects.0.description }}}
-    } {
-        \item \textbf{\title}: \desc
-    }
+\begin{itemize}[label=\textcolor{darkblue}{\faProjectDiagram}]
+    \BLOCK{for project in projects}
+    \item \textbf{\VAR{project.title}} \\
+    \VAR{project.description}
+    \BLOCK{endfor}
 \end{itemize}
 
-% Achievements
-\section*{Achievements}
-\begin{itemize}[leftmargin=*]
-    \foreach \achievement in {
-        {{{ achievements.0 }}}, {{{ achievements.1 }}}
-    } {
-        \item \achievement
-    }
+\section*{Technical Skills}
+\begin{itemize}[label=\textcolor{darkblue}{\faWrench}]
+    \BLOCK{for skill_category, skills in technical_skills.items()}
+    \item \textbf{\VAR{skill_category}:} \VAR{', '.join(skills)}
+    \BLOCK{endfor}
+\end{itemize}
+
+\section*{Certifications}
+\begin{itemize}[label=\textcolor{darkblue}{\faCertificate}]
+    \BLOCK{for certification in certifications}
+    \item \VAR{certification}
+    \BLOCK{endfor}
+\end{itemize}
+
+\section*{Languages}
+\begin{itemize}[label=\textcolor{darkblue}{\faLanguage}]
+    \BLOCK{for language, proficiency in languages.items()}
+    \item \textbf{\VAR{language}:} \VAR{proficiency}
+    \BLOCK{endfor}
+\end{itemize}
+
+\section*{Interests}
+\begin{itemize}[label=\textcolor{darkblue}{\faStar}]
+    \BLOCK{for interest in interests}
+    \item \VAR{interest}
+    \BLOCK{endfor}
 \end{itemize}
 
 \end{document}
