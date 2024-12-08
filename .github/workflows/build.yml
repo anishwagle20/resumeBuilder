@@ -17,9 +17,6 @@ jobs:
     - name: Set Up LaTeX
       run: sudo apt-get update && sudo apt-get install -y texlive-full
 
-    - name: Install Python Dependencies
-      run: pip install json
-
     - name: Build Resumes
       run: python scripts/build.py
 
