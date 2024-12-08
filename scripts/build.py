@@ -8,15 +8,20 @@ def load_data(json_file):
 
 def replace_placeholders(template, data):
     for key, value in data.items():
-        if isinstance(value, list):
-            value = "\n".join(
-                f"- {item['role']} at {item['company']} ({item['duration']}): {item['description']}"
-                if isinstance(item, dict) else f"- {item}"
-                for item in value
-            )
-        elif isinstance(value, dict):
-            value = "\n".join(f"{sub_key}: {sub_value}" for sub_key, sub_value in value.items())
-        template = template.replace(f"{{{{ {key} }}}}", str(value))
+        # Check if the key exists in the data
+        if key in data:
+            if isinstance(data[key], list):
+                value = "\n".join(
+                    f"- {item['role']} at {item['company']} ({item['duration']}): {item['description']}"
+                    if 'role' in item else f"- {item}"
+                    for item in data[key]
+                )
+            elif isinstance(data[key], dict):
+                value = "\n".join(f"{sub_key}: {sub_value}" for sub_key, sub_value in data[key].items())
+            template = template.replace(f"{{{{ {key} }}}}", str(value))
+        else:
+            # In case the key does not exist, replace it with an empty string
+            template = template.replace(f"{{{{ {key} }}}}", "")
     return template
 
 def build_resume(template_file, data, output_file):
