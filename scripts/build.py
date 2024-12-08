@@ -2,33 +2,49 @@ import json
 import os
 import subprocess
 
+
 def load_data(json_file):
     with open(json_file, 'r') as f:
         return json.load(f)
 
+
+def format_list(values):
+    """Format a list into LaTeX itemize format."""
+    return "\n".join([f"\\item {item}" for item in values])
+
+
+def format_projects(values):
+    """Format projects for LaTeX."""
+    formatted = []
+    for project in values:
+        details = "\n".join([f"- {key.capitalize()}: {value}" for key, value in project.items()])
+        formatted.append(f"\\textbf{{{project['title']}}} \\\\ {details}")
+    return "\n\n".join(formatted)
+
+
 def replace_placeholders(template, data):
+    """Replace placeholders with formatted data."""
     for key, value in data.items():
-        if isinstance(value, list):
-            value = "\n".join(
-                f"- {item['role']} at {item['company']} ({item['duration']}): {item['description']}"
-                if isinstance(item, dict) and 'role' in item else f"- {item}"
-                for item in value
-            )
+        if key == "projects" and isinstance(value, list):
+            value = format_projects(value)
+        elif isinstance(value, list):
+            value = format_list(value)
         elif isinstance(value, dict):
-            value = "\n".join(f"{sub_key}: {sub_value}" for sub_key, sub_value in value.items())
+            value = "\n".join([f"{k}: {v}" for k, v in value.items()])
         template = template.replace(f"{{{{ {key} }}}}", str(value))
     return template
 
+
 def build_resume(template_file, data, output_file):
+    """Generate a resume PDF from a LaTeX template."""
     with open(template_file, 'r') as f:
         template = f.read()
 
     filled_template = replace_placeholders(template, data)
 
-    # Temporary file for processing
+    # Temporary files for processing
     temp_tex = "temp.tex"
-    temp_pdf = "temp.pdf"
-    build_dir = "build"
+    build_dir = "builds"
 
     os.makedirs(build_dir, exist_ok=True)
 
@@ -39,20 +55,14 @@ def build_resume(template_file, data, output_file):
         # Compile LaTeX file
         subprocess.run(['pdflatex', temp_tex, '-output-directory', build_dir], check=True)
 
-        # Ensure the PDF is moved to the desired location
-        generated_pdf = os.path.join(build_dir, os.path.splitext(temp_tex)[0] + ".pdf")
-        if not os.path.exists(generated_pdf):
-            # If not in build dir, look in the current dir
-            generated_pdf = temp_pdf
-
         # Move the generated PDF to the output file
+        generated_pdf = os.path.join(build_dir, os.path.splitext(temp_tex)[0] + ".pdf")
         os.rename(generated_pdf, output_file)
     finally:
         # Cleanup temporary files
         if os.path.exists(temp_tex):
             os.remove(temp_tex)
-        if os.path.exists(temp_pdf):
-            os.remove(temp_pdf)
+
 
 def main():
     data = load_data('data.json')
@@ -65,6 +75,7 @@ def main():
         if template.endswith('.tex'):
             output_file = os.path.join(build_dir, f"{os.path.splitext(template)[0]}.pdf")
             build_resume(os.path.join(templates_dir, template), data, output_file)
+
 
 if __name__ == "__main__":
     main()
