@@ -1,0 +1,51 @@
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "phone": "+1-234-567-8901",
+  "address": "123 Main Street, Anytown, USA",
+  "linkedin": "linkedin.com/in/johndoe",
+  "github": "github.com/johndoe",
+  "objective": "To secure a challenging position in a reputable organization to expand my learnings, knowledge, and skills.",
+  "education": [
+    {
+      "degree": "Master of Science in Computer Science",
+      "institution": "University of Example",
+      "year": "2023"
+    },
+    {
+      "degree": "Bachelor of Science in Computer Science",
+      "institution": "Example State University",
+      "year": "2020"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Software Developer",
+      "company": "Tech Solutions Inc.",
+      "year": "2020-2023",
+      "responsibilities": [
+        "Developed and maintained web applications.",
+        "Collaborated with cross-functional teams to define and achieve project goals."
+      ]
+    }
+  ],
+  "skills": [
+    "Python",
+    "Java",
+    "C++",
+    "JavaScript",
+    "HTML/CSS",
+    "Django",
+    "React"
+  ],
+  "projects": [
+    {
+      "title": "Resume Builder",
+      "description": "A tool to automatically generate resumes from JSON data using LaTeX."
+    }
+  ],
+  "achievements": [
+    "Recipient of XYZ Scholarship for Academic Excellence.",
+    "Presented a paper at ABC International Conference."
+  ]
+}
