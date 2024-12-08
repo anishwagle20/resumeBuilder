@@ -40,23 +40,8 @@
             "description": "Conducted performance analysis of MySQL and MongoDB using JMeter, benchmarking their scalability under varying workloads."
         }
     ],
-    "technical_skills": {
-        "Programming Languages": ["C++", "Python", "Java"],
-        "Databases": ["MySQL", "MongoDB"],
-        "Frameworks and Tools": ["Flask", "OpenCV", "JMeter"],
-        "Specialized Skills": ["IoT", "Embedded Systems", "Data Structures", "Operating Systems"]
-    },
-    "certifications": [
-        "Google Project Management: Foundations of Project Management (2021)"
-    ],
-    "languages": {
-        "English": "Full Professional Proficiency",
-        "Hindi": "Full Professional Proficiency",
-        "Nepali": "Native or Bilingual Proficiency"
-    },
-    "interests": [
-        "Solving Puzzles",
-        "Photography",
-        "Embedded Systems and Microcontroller Programming"
-    ]
+    "technical_skills": ["C++", "Python", "Java", "MySQL", "MongoDB", "Flask", "IoT"],
+    "certifications": ["Google Project Management: Foundations of Project Management (2021)"],
+    "languages": ["English: Full Professional Proficiency", "Hindi: Full Professional Proficiency", "Nepali: Native or Bilingual Proficiency"],
+    "interests": ["Solving Puzzles", "Photography", "Embedded Systems and Microcontroller Programming"]
 }

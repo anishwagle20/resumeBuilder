@@ -2,19 +2,63 @@ import json
 import os
 import subprocess
 
-def replace_placeholders(template, data):
-    def format_list(items):
-        """Format a list as LaTeX itemized list."""
-        formatted = "\n".join(
-            f"\\item {item}" if isinstance(item, str) else 
-            f"\\item {item['role']} at {item['company']} ({item['duration']}): {item['description']}"
-            for item in items
-        )
-        return f"\\begin{{itemize}}\n{formatted}\n\\end{{itemize}}"
+def escape_latex(value):
+    """
+    Escape special LaTeX characters in a string.
+    """
+    return (value
+            .replace("&", "\\&")
+            .replace("%", "\\%")
+            .replace("$", "\\$")
+            .replace("#", "\\#")
+            .replace("_", "\\_")
+            .replace("{", "\\{")
+            .replace("}", "\\}")
+            .replace("~", "\\textasciitilde{}")
+            .replace("^", "\\textasciicircum{}")
+            )
 
+def format_list(items, key_mappings=None):
+    """
+    Format a list as LaTeX \itemize content.
+    If items are dictionaries, map keys using `key_mappings`.
+    """
+    formatted = []
+    for item in items:
+        if isinstance(item, dict):
+            formatted_item = ", ".join(
+                f"{key_mappings[k]}: {escape_latex(str(v))}"
+                for k, v in item.items() if k in key_mappings
+            )
+            formatted.append(f"\\item {formatted_item}")
+        else:
+            formatted.append(f"\\item {escape_latex(str(item))}")
+    return "\n".join(formatted)
+
+def replace_placeholders(template, data):
+    """
+    Replace placeholders in the LaTeX template with content from the data.
+    """
+    key_mappings = {
+        "role": "Role",
+        "company": "Company",
+        "duration": "Duration",
+        "description": "Description",
+        "degree": "Degree",
+        "institution": "Institution",
+        "details": "Details"
+    }
+    
     for key, value in data.items():
         if isinstance(value, list):
-            value = format_list(value)
+            # Format as LaTeX itemized list
+            value = format_list(value, key_mappings)
+        elif isinstance(value, dict):
+            # Process dictionary fields
+            value = format_list([value], key_mappings)
+        else:
+            # Escape LaTeX for plain strings
+            value = escape_latex(str(value))
         template = template.replace(f"{{{{ {key} }}}}", value)
     return template
 
