@@ -27,15 +27,32 @@ def build_resume(template_file, data, output_file):
 
     # Temporary file for processing
     temp_tex = "temp.tex"
+    temp_pdf = "temp.pdf"
+    build_dir = "build"
+
+    os.makedirs(build_dir, exist_ok=True)
+
     with open(temp_tex, 'w') as f:
         f.write(filled_template)
 
     try:
         # Compile LaTeX file
-        subprocess.run(['pdflatex', temp_tex, '-output-directory', 'build'], check=True)
-        os.rename(f"build/{os.path.splitext(temp_tex)[0]}.pdf", output_file)
+        subprocess.run(['pdflatex', temp_tex, '-output-directory', build_dir], check=True)
+
+        # Ensure the PDF is moved to the desired location
+        generated_pdf = os.path.join(build_dir, os.path.splitext(temp_tex)[0] + ".pdf")
+        if not os.path.exists(generated_pdf):
+            # If not in build dir, look in the current dir
+            generated_pdf = temp_pdf
+
+        # Move the generated PDF to the output file
+        os.rename(generated_pdf, output_file)
     finally:
-        os.remove(temp_tex)
+        # Cleanup temporary files
+        if os.path.exists(temp_tex):
+            os.remove(temp_tex)
+        if os.path.exists(temp_pdf):
+            os.remove(temp_pdf)
 
 def main():
     data = load_data('data.json')
