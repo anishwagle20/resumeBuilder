@@ -1,0 +1,2 @@
+latexmk==4.9
+pdflatex
