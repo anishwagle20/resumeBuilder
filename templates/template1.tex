@@ -1,76 +1,41 @@
-\documentclass[11pt,a4paper]{article}
-
+\documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[margin=1cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[margin=1in]{geometry}
 \usepackage{xcolor}
 \usepackage{enumitem}
-\usepackage{fontawesome}
-\usepackage{pgffor} % Add this line to enable \foreach
 
 \definecolor{darkblue}{rgb}{0.0, 0.0, 0.55}
 
 \begin{document}
 
 \begin{center}
-    {\Huge\textbf{\textcolor{darkblue}{\VAR{name}}}} \\
-    \vspace{0.5em}
-    \textcolor{darkblue}{\large \faEnvelope\ \VAR{email} \hspace{1em} \faPhone\ \VAR{phone}}
+    {\huge \textbf{\textcolor{darkblue}{\VAR{name}}}} \\
+    \vspace{5pt}
+    \textcolor{darkblue}{\VAR{email} | \VAR{phone}} \\
 \end{center}
 
-\vspace{1em}
+\vspace{10pt}
 
 \section*{Professional Experience}
-\begin{itemize}[label=\textcolor{darkblue}{\faBriefcase}]
-    \BLOCK{for experience in experiences}
-    \item \textbf{\VAR{experience.role}} - \VAR{experience.company} \hfill \VAR{experience.duration} \\
-    \VAR{experience.description}
-    \BLOCK{endfor}
-\end{itemize}
+\VAR{experiences}
 
 \section*{Education}
-\begin{itemize}[label=\textcolor{darkblue}{\faGraduationCap}]
-    \BLOCK{for education in education}
-    \item \textbf{\VAR{education.degree}} \hfill \VAR{education.duration} \\
-    \VAR{education.institution} \\
-    \VAR{education.details}
-    \BLOCK{endfor}
-\end{itemize}
+\VAR{education}
 
 \section*{Projects}
-\begin{itemize}[label=\textcolor{darkblue}{\faProjectDiagram}]
-    \BLOCK{for project in projects}
-    \item \textbf{\VAR{project.title}} \\
-    \VAR{project.description}
-    \BLOCK{endfor}
-\end{itemize}
+\VAR{projects}
 
 \section*{Technical Skills}
-\begin{itemize}[label=\textcolor{darkblue}{\faWrench}]
-    \BLOCK{for skill_category, skills in technical_skills.items()}
-    \item \textbf{\VAR{skill_category}:} \VAR{', '.join(skills)}
-    \BLOCK{endfor}
-\end{itemize}
+\VAR{technical_skills}
 
 \section*{Certifications}
-\begin{itemize}[label=\textcolor{darkblue}{\faCertificate}]
-    \BLOCK{for certification in certifications}
-    \item \VAR{certification}
-    \BLOCK{endfor}
-\end{itemize}
+\VAR{certifications}
 
 \section*{Languages}
-\begin{itemize}[label=\textcolor{darkblue}{\faLanguage}]
-    \BLOCK{for language, proficiency in languages.items()}
-    \item \textbf{\VAR{language}:} \VAR{proficiency}
-    \BLOCK{endfor}
-\end{itemize}
+\VAR{languages}
 
 \section*{Interests}
-\begin{itemize}[label=\textcolor{darkblue}{\faStar}]
-    \BLOCK{for interest in interests}
-    \item \VAR{interest}
-    \BLOCK{endfor}
-\end{itemize}
+\VAR{interests}
 
 \end{document}

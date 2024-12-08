@@ -3,81 +3,60 @@
     "email": "anish.wagle20@gmail.com",
     "phone": "8746061314",
     "experiences": [
-      {
-        "role": "Software Engineer",
-        "company": "Continental Automotive",
-        "duration": "Nov 2024 – Present",
-        "description": "Transitioned to a full-time role after completing an internship. Focused on Python development for embedded systems, IoT solutions, and mobile app development."
-      },
-      {
-        "role": "Intern",
-        "company": "Continental Automotive",
-        "duration": "Sept 2022 – July 2023",
-        "description": "Contributed to projects involving Raspberry Pi, Flask-based web development, and mobile applications using Java and C/C++."
-      }
+        {
+            "role": "Software Engineer",
+            "company": "Continental Automotive",
+            "duration": "Nov 2024 – Present",
+            "description": "Transitioned to a full-time role after completing an internship. Focused on Python development for embedded systems, IoT solutions, and mobile app development."
+        },
+        {
+            "role": "Intern",
+            "company": "Continental Automotive",
+            "duration": "Sept 2022 – July 2023",
+            "description": "Contributed to projects involving Raspberry Pi, Flask-based web development, and mobile applications using Java and C/C++."
+        }
     ],
     "education": [
-      {
-        "degree": "M Tech in Computer Science and Engineering",
-        "institution": "VIT Vellore, Vellore",
-        "duration": "2021 – 2023",
-        "details": "CGPA: 8.06"
-      },
-      {
-        "degree": "B.E. in Electronics and Communication",
-        "institution": "NIIST (RGPV), Bhopal",
-        "duration": "2012 – 2016",
-        "details": "CGPA: 7.41"
-      },
-      {
-        "degree": "Higher Secondary (+2 Science)",
-        "institution": "Rammani Campus",
-        "duration": "2010 – 2012",
-        "details": "Percentage: 69.80"
-      },
-      {
-        "degree": "SLC (School Leaving Certificate)",
-        "institution": "Paramount Boarding High School",
-        "duration": "2010",
-        "details": "Percentage: 81.38"
-      }
+        {
+            "degree": "M Tech in Computer Science and Engineering",
+            "institution": "VIT Vellore, Vellore",
+            "duration": "2021 – 2023",
+            "details": "CGPA: 8.06"
+        },
+        {
+            "degree": "B.E. in Electronics and Communication",
+            "institution": "NIIST (RGPV), Bhopal",
+            "duration": "2012 – 2016",
+            "details": "CGPA: 7.41"
+        }
     ],
     "projects": [
-      {
-        "title": "IoT-based Greenhouse Management System",
-        "description": "Automated environmental monitoring and control for greenhouses using sensors and actuators, ensuring optimal conditions for plant growth."
-      },
-      {
-        "title": "Performance Testing of Relational and Non-relational Databases",
-        "description": "Conducted performance analysis of MySQL and MongoDB using JMeter, benchmarking their scalability under varying workloads."
-      },
-      {
-        "title": "Car Price Prediction System",
-        "description": "Built a machine learning model to predict car prices based on customer inputs, using Python and statistical modeling techniques."
-      },
-      {
-        "title": "Car Parking Space Finder and Counter",
-        "description": "Developed an image processing solution using OpenCV to detect available parking spaces and provide real-time updates."
-      }
+        {
+            "title": "IoT-based Greenhouse Management System",
+            "description": "Automated environmental monitoring and control for greenhouses using sensors and actuators, ensuring optimal conditions for plant growth."
+        },
+        {
+            "title": "Performance Testing of Relational and Non-relational Databases",
+            "description": "Conducted performance analysis of MySQL and MongoDB using JMeter, benchmarking their scalability under varying workloads."
+        }
     ],
     "technical_skills": {
-      "Programming Languages": ["C++", "Python", "Java"],
-      "Databases": ["MySQL", "MongoDB"],
-      "Frameworks and Tools": ["Flask", "OpenCV", "JMeter"],
-      "Specialized Skills": ["IoT", "Embedded Systems", "Data Structures", "Operating Systems"]
+        "Programming Languages": ["C++", "Python", "Java"],
+        "Databases": ["MySQL", "MongoDB"],
+        "Frameworks and Tools": ["Flask", "OpenCV", "JMeter"],
+        "Specialized Skills": ["IoT", "Embedded Systems", "Data Structures", "Operating Systems"]
     },
     "certifications": [
-      "Google Project Management: Foundations of Project Management (2021)"
+        "Google Project Management: Foundations of Project Management (2021)"
     ],
     "languages": {
-      "English": "Full Professional Proficiency",
-      "Hindi": "Full Professional Proficiency",
-      "Nepali": "Native or Bilingual Proficiency"
+        "English": "Full Professional Proficiency",
+        "Hindi": "Full Professional Proficiency",
+        "Nepali": "Native or Bilingual Proficiency"
     },
     "interests": [
-      "Solving Puzzles",
-      "Photography",
-      "Embedded Systems and Microcontroller Programming"
+        "Solving Puzzles",
+        "Photography",
+        "Embedded Systems and Microcontroller Programming"
     ]
-  }
-  
+}

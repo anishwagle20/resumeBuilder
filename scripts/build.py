@@ -8,8 +8,15 @@ def load_data(json_file):
 
 def replace_placeholders(template, data):
     for key, value in data.items():
-        placeholder = f"{{{{ {key} }}}}"  # Example placeholder: {{ name }}
-        template = template.replace(placeholder, str(value))
+        if isinstance(value, list):
+            value = "\n".join(
+                f"- {item['role']} at {item['company']} ({item['duration']}): {item['description']}"
+                if isinstance(item, dict) else f"- {item}"
+                for item in value
+            )
+        elif isinstance(value, dict):
+            value = "\n".join(f"{sub_key}: {sub_value}" for sub_key, sub_value in value.items())
+        template = template.replace(f"{{{{ {key} }}}}", str(value))
     return template
 
 def build_resume(template_file, data, output_file):
@@ -18,11 +25,13 @@ def build_resume(template_file, data, output_file):
 
     filled_template = replace_placeholders(template, data)
 
+    # Temporary file for processing
     temp_tex = "temp.tex"
     with open(temp_tex, 'w') as f:
         f.write(filled_template)
 
     try:
+        # Compile LaTeX file
         subprocess.run(['pdflatex', temp_tex, '-output-directory', 'build'], check=True)
         os.rename(f"build/{os.path.splitext(temp_tex)[0]}.pdf", output_file)
     finally:
